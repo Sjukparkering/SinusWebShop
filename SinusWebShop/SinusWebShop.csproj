@@ -17,4 +17,16 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.1" PrivateAssets="all" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Models\" />
+    <None Remove="Components\" />
+    <None Remove="Services\" />
+    <None Remove="Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Components\" />
+    <Folder Include="Services\" />
+    <Folder Include="Data\" />
+  </ItemGroup>
 </Project>

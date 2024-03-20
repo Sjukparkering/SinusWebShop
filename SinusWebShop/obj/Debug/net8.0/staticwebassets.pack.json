@@ -1,0 +1,61 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/bin/Debug/net8.0/wwwroot/_framework/blazor.webassembly.js",
+      "PackagePath": "staticwebassets/_framework/blazor.webassembly.js"
+    },
+    {
+      "Id": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/obj/Debug/net8.0/compressed/aeye0bpjy1.gz",
+      "PackagePath": "staticwebassets/_framework/blazor.webassembly.js.gz"
+    },
+    {
+      "Id": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/obj/Debug/net8.0/scopedcss/bundle/SinusWebShop.styles.css",
+      "PackagePath": "staticwebassets/SinusWebShop.styles.css"
+    },
+    {
+      "Id": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/wwwroot/css/app.css",
+      "PackagePath": "staticwebassets/css/app.css"
+    },
+    {
+      "Id": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/wwwroot/css/bootstrap/bootstrap.min.css",
+      "PackagePath": "staticwebassets/css/bootstrap/bootstrap.min.css"
+    },
+    {
+      "Id": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/wwwroot/css/bootstrap/bootstrap.min.css.map",
+      "PackagePath": "staticwebassets/css/bootstrap/bootstrap.min.css.map"
+    },
+    {
+      "Id": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/wwwroot/favicon.png",
+      "PackagePath": "staticwebassets/favicon.png"
+    },
+    {
+      "Id": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/wwwroot/icon-192.png",
+      "PackagePath": "staticwebassets/icon-192.png"
+    },
+    {
+      "Id": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/wwwroot/index.html",
+      "PackagePath": "staticwebassets/index.html"
+    },
+    {
+      "Id": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/wwwroot/sample-data/weather.json",
+      "PackagePath": "staticwebassets/sample-data/weather.json"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.SinusWebShop.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.SinusWebShop.props",
+      "PackagePath": "build\\SinusWebShop.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.SinusWebShop.props",
+      "PackagePath": "buildMultiTargeting\\SinusWebShop.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.SinusWebShop.props",
+      "PackagePath": "buildTransitive\\SinusWebShop.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
