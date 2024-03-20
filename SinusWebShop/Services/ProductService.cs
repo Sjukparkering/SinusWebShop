@@ -11,9 +11,9 @@ public class ProductService
         _httpClient = httpClient;
     }
 
-    public async Task<List<Product>> GetProductsByCategoryAsync(string categoryName)
+    public async Task<List<ProductModel>> GetProductsByCategoryAsync(string categoryName)
     {
-        var allProducts = await _httpClient.GetFromJsonAsync<List<Product>>("https://dummyjson.com/docs/products");
+        var allProducts = await _httpClient.GetFromJsonAsync<List<ProductModel>>("https://dummyjson.com/docs/products");
         return allProducts.Where(p => p.Category == categoryName).ToList();
     }
 

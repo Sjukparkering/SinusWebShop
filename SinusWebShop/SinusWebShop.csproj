@@ -15,6 +15,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.1" PrivateAssets="all" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,11 +23,13 @@
     <None Remove="Components\" />
     <None Remove="Services\" />
     <None Remove="Data\" />
+    <None Remove="Managers\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Components\" />
     <Folder Include="Services\" />
     <Folder Include="Data\" />
+    <Folder Include="Managers\" />
   </ItemGroup>
 </Project>

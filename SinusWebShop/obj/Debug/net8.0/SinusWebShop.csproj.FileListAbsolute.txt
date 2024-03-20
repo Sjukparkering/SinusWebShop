@@ -1030,3 +1030,8 @@
 /Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/obj/Debug/net8.0/refint/SinusWebShop.dll
 /Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/obj/Debug/net8.0/SinusWebShop.pdb
 /Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/obj/Debug/net8.0/ref/SinusWebShop.dll
+/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/bin/Debug/net8.0/wwwroot/_framework/Newtonsoft.Json.wasm
+/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/bin/Debug/net8.0/wwwroot/_framework/Newtonsoft.Json.wasm.gz
+/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/bin/Debug/net8.0/Newtonsoft.Json.dll
+/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/obj/Debug/net8.0/webcil/Newtonsoft.Json.wasm
+/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/obj/Debug/net8.0/compressed/0qjaawqkki.gz

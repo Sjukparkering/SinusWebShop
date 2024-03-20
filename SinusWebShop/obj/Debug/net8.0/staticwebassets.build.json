@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fAjmSjGo8UV7PX6cQsinpGuvGfmz3oZc3jIUDWcDU/4=",
+  "Hash": "UjLb6CBukwI0o4qOjRPZs7ZKzqifPQuEKXUMwP9UDCU=",
   "Source": "SinusWebShop",
   "BasePath": "/",
   "Mode": "Root",
@@ -775,6 +775,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/obj/Debug/net8.0/webcil/netstandard.wasm"
+    },
+    {
+      "Identity": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/bin/Debug/net8.0/wwwroot/_framework/Newtonsoft.Json.wasm",
+      "SourceId": "SinusWebShop",
+      "SourceType": "Computed",
+      "ContentRoot": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/bin/Debug/net8.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/Newtonsoft.Json.wasm",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "WasmResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/obj/Debug/net8.0/webcil/Newtonsoft.Json.wasm"
     },
     {
       "Identity": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/bin/Debug/net8.0/wwwroot/_framework/SinusWebShop.pdb",
@@ -4043,6 +4062,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/bin/Debug/net8.0/wwwroot/_framework/System.Runtime.Extensions.wasm"
+    },
+    {
+      "Identity": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/obj/Debug/net8.0/compressed/0qjaawqkki.gz",
+      "SourceId": "SinusWebShop",
+      "SourceType": "Computed",
+      "ContentRoot": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/bin/Debug/net8.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/Newtonsoft.Json.wasm.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/bin/Debug/net8.0/wwwroot/_framework/Newtonsoft.Json.wasm",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/bin/Debug/net8.0/wwwroot/_framework/Newtonsoft.Json.wasm"
     },
     {
       "Identity": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/obj/Debug/net8.0/compressed/0v3bk4sn1r.gz",
