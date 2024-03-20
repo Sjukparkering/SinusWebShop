@@ -1,6 +1,33 @@
-﻿<h3>Component1</h3>
+﻿@page "/CartPage"
 
-@code {
+<h1>Varukorg</h1>
 
-}
+<div class="cart-items">
+    <div class="cart-item">
+        <div class="item-details">
+            <h3>Produkt 1</h3>
+            <p>Pris: 100 kr</p>
+            <p>Antal: 2</p>
+        </div>
+        <div class="item-total">
+            <h3>Totalt:</h3>
+            <p>200 kr</p>
+        </div>
+    </div>
+    <div class="cart-item">
+        <div class="item-details">
+            <h3>Produkt 2</h3>
+            <p>Pris: 50 kr</p>
+            <p>Antal: 1</p>
+        </div>
+        <div class="item-total">
+            <h3>Totalt:</h3>
+            <p>50 kr</p>
+        </div>
+    </div>
+</div>
 
+<div class="cart-total">
+    <h2>Totalt: 250 kr</h2>
+    <button class="checkout-button">Slutför köp</button>
+</div>

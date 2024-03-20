@@ -2,7 +2,6 @@
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-
 public class ProductService
 {
     private readonly HttpClient _httpClient;
@@ -12,9 +11,10 @@ public class ProductService
         _httpClient = httpClient;
     }
 
-    public async Task<IEnumerable<Product>> GetProductsAsync()
+    public async Task<List<Product>> GetProductsByCategoryAsync(string categoryName)
     {
-        return await _httpClient.GetFromJsonAsync<IEnumerable<Product>>("https://dummyjson.com/products");
+        var allProducts = await _httpClient.GetFromJsonAsync<List<Product>>("https://dummyjson.com/docs/products");
+        return allProducts.Where(p => p.Category == categoryName).ToList();
     }
-}
 
+}

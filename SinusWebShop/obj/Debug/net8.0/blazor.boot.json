@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "SinusWebShop",
   "resources": {
-    "hash": "sha256-VzohfSlJfwNG22KLuVnGIo0Qz54mm1CD1/xDRlT59J4=",
+    "hash": "sha256-FBcCmtfgs6DidgWureTZD+Jy659fOKIIYjKznDIXPjs=",
     "jsModuleNative": {
       "dotnet.native.8.0.1.d777kpq2wr.js": "sha256-SGOlISx+3G4kkvpC9Uq3qoPGsnjxGmW61QBev0lyI5U="
     },
@@ -208,10 +208,10 @@
       "mscorlib.wasm": "sha256-EpWTfh4m/hEcXRFYMCR9YeYHwdUJgcm1laBaxWfq2S4=",
       "netstandard.wasm": "sha256-2kH24/YfHmU3B4eYRyRmiwebYROM4+B9eDWKvMnUdP8=",
       "System.Private.CoreLib.wasm": "sha256-CsySKiP7HYY1pS8LTDE60EkqiX5oHb3WoEZHDNd1yK0=",
-      "SinusWebShop.wasm": "sha256-CMDqGqOyi12fD+QpSrL/d56J3toCmOOhx2H3BDUhh7I="
+      "SinusWebShop.wasm": "sha256-xjCGqkD7BcmRkKvPVat0HfQuQaDSB3PjvhgwZbzjcuM="
     },
     "pdb": {
-      "SinusWebShop.pdb": "sha256-+EW6m7U5B1YihBUuA5UXHMqf33rJ2om/5yU6B0154Y4="
+      "SinusWebShop.pdb": "sha256-gIJykwHcb91bRCxg00VH5gb/ZxK3R7/dVtvK6Sv6k90="
     }
   },
   "cacheBootResources": true,
