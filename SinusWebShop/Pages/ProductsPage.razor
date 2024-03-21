@@ -1,0 +1,51 @@
+﻿@page "/category/{categoryName}"
+@inject HttpClient httpClient
+@using SinusWebShop.Models
+@using System.Net.Http.Json
+
+<h1>@CategoryName Products</h1>
+
+@if (Products != null && Products.Any())
+{
+    <div class="card-container">
+        @foreach (var product in Products)
+        {
+            <div class="card">
+                <img style="height:350px" src="@product.Thumbnail" alt="@product.Title" />
+                <div class="card-body">
+                    <h3>@product.Title</h3>
+                    <p>@product.Description</p>
+                    <p>Price: @product.Price</p>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>No products found for @CategoryName category.</p>
+}
+
+@code {
+    [Parameter]
+    public string CategoryName { get; set; }
+
+    public List<Product> Products { get; set; }
+    public string ErrorMessage { get; set; }
+
+    [Inject]
+    public HttpClient HttpClient { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            Root result = await HttpClient.GetFromJsonAsync<Root>("products");
+            Products = result.Products.Where(p => p.Category == CategoryName).ToList();
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = ex.Message;
+        }
+    }
+}

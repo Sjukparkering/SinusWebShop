@@ -1,9 +1,10 @@
-﻿
+﻿using SinusWebShop.Models;
+
 namespace SinusWebShop.Managers
 {
-      public static class CartManager
-      {
-            public static List<ProductModel> Cart { get; set; } = new();
+    public static class CartManager
+    {
+            public static List<Product> Cart { get; set; } = new();
 
             public static double? GetTotalPrice()
             {

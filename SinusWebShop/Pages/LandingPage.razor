@@ -1,132 +1,80 @@
-﻿
-@page "/"
+﻿@page "/"
+@inject NavigationManager NavigationManager
+@inject HttpClient httpClient
+@using SinusWebShop.Models
+@using SinusWebShop.Api
 
 <h1>Välkommen till vår Webshop!</h1>
 
 <p>Utforska våra senaste produkter och erbjudanden nedan.</p>
 
-<!-- Huvudkategorier -->
-<div class="main-categories">
-    @foreach (var category in categories)
-    {
-        <div class="category">
-            <h2>@category.Name</h2>
-            <p>@category.Description</p>
-            <!-- Länk till kategori-sidan -->
-            <a href="@($"/products/{category.Id}")">Utforska @category.Name</a>
-        </div>
-    }
-</div>
-
-<!-- Kampanjer eller nya kollektioner -->
-<div class="promotions">
-    <h2>Kampanjer</h2>
-    @if (promotions.Any())
-    {
-        foreach (var promo in promotions)
+@if (Categories != null && Categories.Any())
+{
+    <div class="main-categories">
+        @foreach (var category in Categories)
         {
-            <div class="promotion">
-                <h3>@promo.Title</h3>
-                <p>@promo.Description</p>
-                <!-- Länk till produkten eller kampanjen -->
-                <a href="@promo.Link">Läs mer</a>
+            <div class="category">
+                <h2>@category</h2>
+                <button class="explore-button" @onclick="() => NavigateToCategory(category)">Explore Products</button>
             </div>
         }
-    }
-    else
-    {
-        <p>Inga kampanjer just nu. Kom tillbaka snart!</p>
-    }
-</div>
+    </div>
+}
 
 @code {
-    // Exempel på kategorier
-    private List<Category> categories = new List<Category>
-{
-        new Category { Id = 1, Name = "Elektronik", Description = "De senaste elektroniska prylarna" },
-        new Category { Id = 2, Name = "Kläder", Description = "Mode för alla tillfällen" },
-        new Category { Id = 3, Name = "Djur", Description = "Allt till våra fyrbenta vänner" },
-        new Category { Id = 4, Name = "Skönhet och hälsa", Description = "bla bla bla"}
-    };
+    public List<string> Categories { get; set; }
+    public string ErrorMessage { get; set; }
 
-    // Exempel på kampanjer
-    private List<Promotion> promotions = new List<Promotion>
-{
-        new Promotion { Title = "Sommarens hetaste försäljning!", Description = "Upp till 50% rabatt på utvalda varor", Link = "/promotion/summer-sale" },
-        
-    };
-
-    // Klasser för kategorier och kampanjer
-    private class Category
+    protected override async Task OnInitializedAsync()
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        try
+        {
+            Root result = await new ApiCaller().GetProductData("products");
+            Categories = result.Products.Select(p => p.Category).Distinct().ToList();
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = ex.Message;
+        }
     }
-     
-    private class Promotion
+
+    private void NavigateToCategory(string categoryName)
     {
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public string Link { get; set; }
+        NavigationManager.NavigateTo($"/category/{categoryName}");
     }
 }
 
-
 <style>
-    .header {
-        color: #333;
-        text-align: center;
-        margin-bottom: 2rem;
-    }
-
-    .intro {
-        text-align: center;
-        margin-bottom: 4rem;
-    }
-
     .main-categories {
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-around;
-        margin-bottom: 4rem;
+        margin-top: 20px;
     }
 
     .category {
+        background-color: #f9f9f9;
         border: 1px solid #ddd;
-        padding: 1rem;
         border-radius: 8px;
-        width: 20%;
+        padding: 20px;
+        margin: 10px;
         text-align: center;
+        width: 200px;
     }
 
-    .explore-link {
-        display: inline-block;
-        margin-top: 1rem;
-        padding: 0.5rem 1rem;
+    .explore-button {
         background-color: #007bff;
         color: white;
+        border: none;
         border-radius: 4px;
-        text-decoration: none;
+        padding: 10px 20px;
+        margin-top: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
     }
 
-    .promotions {
-        margin-bottom: 4rem;
-    }
+        .explore-button:hover {
+            background-color: #0056b3;
+        }
 
-    .promotion {
-        border: 1px solid #ddd;
-        padding: 1rem;
-        border-radius: 8px;
-        margin-bottom: 1rem;
-    }
-
-    .learn-more-link {
-        display: inline-block;
-        margin-top: 1rem;
-        padding: 0.5rem 1rem;
-        background-color: #28a745;
-        color: white;
-        border-radius: 4px;
-        text-decoration: none;
-    }
 </style>

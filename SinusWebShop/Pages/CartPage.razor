@@ -1,4 +1,4 @@
-﻿
+﻿@using SinusWebShop.Models
 @using SinusWebShop.Managers
 @page "/CartPage"
 
@@ -8,7 +8,7 @@
 @if (CartManager.Cart.Any())
 {
     <ul>
-        @foreach (ProductModel product in CartManager.Cart)
+        @foreach (Product product in CartManager.Cart)
         {
             <li>
                 <h3>@product.Title</h3>
