@@ -2,38 +2,38 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/Pages/LandingPage.razor" relfile="SinusWebShop/Pages/LandingPage.razor" line="76" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="SinusWebShop/API/ApiCaller.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SinusWebShop/Pages/ProductDetails.razor">
     <Files>
       <File FileName="SinusWebShop/Pages/CartPage.razor" Line="1" Column="27" />
       <File FileName="SinusWebShop/Pages/OrderConfirmationPage.razor" Line="1" Column="1" />
       <File FileName="SinusWebShop/Services/ProductService.cs" Line="24" Column="1" />
-      <File FileName="SinusWebShop/Program.cs" Line="18" Column="1" />
-      <File FileName="SinusWebShop/Pages/LandingPage.razor" Line="121" Column="9" />
-      <File FileName="SinusWebShop/_Imports.razor" Line="1" Column="1" />
+      <File FileName="SinusWebShop/Program.cs" Line="16" Column="1" />
+      <File FileName="SinusWebShop/_Imports.razor" />
       <File FileName="SinusWebShop/App.razor" />
       <File FileName="SinusWebShop/Properties/launchSettings.json" Line="19" Column="9" />
       <File FileName="SinusWebShop/wwwroot/index.html" />
       <File FileName="SinusWebShop/Layout/NavMenu.razor" />
-      <File FileName="SinusWebShop/Pages/ProductsDetailPage.razor" Line="8" Column="1" />
+      <File FileName="SinusWebShop/Pages/ProductsDetailPage.razor" Line="4" Column="27" />
       <File FileName="SinusWebShop/Managers/CartManager.cs" Line="17" Column="1" />
-      <File FileName="SinusWebShop/Pages/ProductsPageEl.razor" Line="3" Column="1" />
-      <File FileName="SinusWebShop/API/ApiCaller.cs" Line="11" Column="1" />
-      <File FileName="SinusWebShop/Models/Root.cs" Line="20" Column="1" />
+      <File FileName="SinusWebShop/Pages/ProductsPageEl.razor" Line="34" Column="1" />
+      <File FileName="SinusWebShop/API/ApiCaller.cs" Line="37" Column="2" />
+      <File FileName="SinusWebShop/Models/Root.cs" Line="63" Column="1" />
+      <File FileName="SinusWebShop/Pages/ProductDetails.razor" Line="43" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="SinusWebShop" expanded="True">
+          <Node name="SinusWebShop">
             <Node name="SinusWebShop">
-              <Node name="Dependencies" selected="True" />
               <Node name="API" expanded="True" />
+              <Node name="Managers" expanded="True" />
               <Node name="Models" expanded="True" />
-              <Node name="Pages" expanded="True" />
-              <Node name="Properties" expanded="True" />
+              <Node name="Pages">
+                <Node name="ProductDetails.razor" selected="True" />
+              </Node>
+              <Node name="Services" expanded="True" />
             </Node>
           </Node>
         </State>

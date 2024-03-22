@@ -1,21 +1,43 @@
 ﻿@page "/category/{categoryName}"
 @inject HttpClient httpClient
+@inject NavigationManager NavigationManager
 @using SinusWebShop.Models
 @using System.Net.Http.Json
 
 <h1>@CategoryName Products</h1>
 
+<!-- Filter for brand -->
+<select @bind="SelectedBrand">
+    <option value="">All Brands</option>
+    @foreach (var brand in ProductBrands)
+    {
+        <option value="@brand">@brand</option>
+    }
+</select>
+
+<!-- Filter for price -->
+<select @bind="SelectedPriceRange">
+    <option value="">All Prices</option>
+    @foreach (var priceRange in PriceRanges)
+    {
+        <option value="@priceRange">@priceRange</option>
+    }
+</select>
+
+<!-- Button to apply filters -->
+<button @onclick="ApplyFilters">Apply Filters</button>
+
 @if (Products != null && Products.Any())
 {
     <div class="card-container">
-        @foreach (var product in Products)
+        @foreach (var product in FilteredProducts)
         {
             <div class="card">
                 <img style="height:350px" src="@product.Thumbnail" alt="@product.Title" />
                 <div class="card-body">
                     <h3>@product.Title</h3>
-                    <p>@product.Description</p>
                     <p>Price: @product.Price</p>
+                    <button @onclick="() => NavigateToProductDetails(product.ProductId)">View Details</button>
                 </div>
             </div>
         }
@@ -31,7 +53,12 @@ else
     public string CategoryName { get; set; }
 
     public List<Product> Products { get; set; }
+    public List<Product> FilteredProducts { get; set; }
     public string ErrorMessage { get; set; }
+    public string SelectedBrand { get; set; }
+    public string SelectedPriceRange { get; set; }
+    public List<string> ProductBrands { get; set; }
+    public List<string> PriceRanges { get; set; }
 
     [Inject]
     public HttpClient HttpClient { get; set; }
@@ -40,12 +67,48 @@ else
     {
         try
         {
+            // Get products from API
             Root result = await HttpClient.GetFromJsonAsync<Root>("products");
             Products = result.Products.Where(p => p.Category == CategoryName).ToList();
+
+            // Extract unique brands and price ranges from products
+            ProductBrands = Products.Select(p => p.Brand).Distinct().ToList();
+            PriceRanges = Products.Select(p => p.Price).Distinct().Select(price => $"{price}-{price + 50}").ToList(); // Example price range of $50
+
+            // Apply initial filtering
+            FilterProducts();
         }
         catch (Exception ex)
         {
             ErrorMessage = ex.Message;
         }
+    }
+
+    private void FilterProducts()
+    {
+        FilteredProducts = Products;
+
+        // Filter by brand
+        if (!string.IsNullOrEmpty(SelectedBrand))
+        {
+            FilteredProducts = FilteredProducts.Where(p => p.Brand == SelectedBrand).ToList();
+        }
+
+        // Filter by price
+        if (!string.IsNullOrEmpty(SelectedPriceRange))
+        {
+            var priceRange = SelectedPriceRange.Split('-').Select(int.Parse).ToList();
+            FilteredProducts = FilteredProducts.Where(p => p.Price >= priceRange[0] && p.Price <= priceRange[1]).ToList();
+        }
+    }
+
+    private void ApplyFilters()
+    {
+        FilterProducts();
+    }
+
+    private void NavigateToProductDetails(int productId)
+    {
+        NavigationManager.NavigateTo($"/product/{productId}");
     }
 }

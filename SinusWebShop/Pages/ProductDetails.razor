@@ -1,0 +1,59 @@
+﻿@page "/product/{productId}"
+@inject HttpClient httpClient
+@inject NavigationManager NavigationManager
+@using SinusWebShop.Models
+@using System.Net.Http.Json
+
+@if (Product != null)
+{
+    <div class="product-details">
+        <h1>@Product.Title</h1>
+        <img src="@Product.Thumbnail" alt="@Product.Title" />
+        <p>Description: @Product.Description</p>
+        <p>Price: @Product.Price</p>
+        
+    </div>
+}
+else
+{
+    <p>Product not found.</p>
+}
+
+@code {
+    [Parameter]
+    public int ProductId { get; set; }
+
+    public Product Product { get; set; }
+    public string ErrorMessage { get; set; }
+
+    [Inject]
+    public HttpClient HttpClient { get; set; }
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            
+            Product = await HttpClient.GetFromJsonAsync<Product>($"product/{ProductId}");
+
+            
+            if (Product == null)
+            {
+                
+                ErrorMessage = "Product not found.";
+            }
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = ex.Message;
+        }
+    }
+
+
+
+
+
+
+}

@@ -38,6 +38,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvT3JkZXJDb25maXJtYXRpb25QYWdlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/Pages/ProductDetails.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHJvZHVjdERldGFpbHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/Pages/ProductsPage.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHJvZHVjdHNQYWdlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
