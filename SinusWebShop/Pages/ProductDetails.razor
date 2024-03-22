@@ -1,6 +1,5 @@
-﻿@page "/product/{productId}"
+﻿@page "/product/{Id:int}"
 @inject HttpClient httpClient
-@inject NavigationManager NavigationManager
 @using SinusWebShop.Models
 @using System.Net.Http.Json
 
@@ -11,7 +10,14 @@
         <img src="@Product.Thumbnail" alt="@Product.Title" />
         <p>Description: @Product.Description</p>
         <p>Price: @Product.Price</p>
-        
+        <p>Stock: @Product.Stock</p>
+        <p>Brand: @Product.Brand</p>
+        <p>Category: @Product.Category</p>
+        <h2>Images:</h2>
+        @foreach (var image in Product.Images)
+        {
+            <img src="@image" alt="Product Image" />
+        }
     </div>
 }
 else
@@ -21,39 +27,25 @@ else
 
 @code {
     [Parameter]
-    public int ProductId { get; set; }
+    public int Id { get; set; }
 
-    public Product Product { get; set; }
+    public Product? Product { get; set; }
     public string ErrorMessage { get; set; }
 
     [Inject]
     public HttpClient HttpClient { get; set; }
 
-
-
     protected override async Task OnInitializedAsync()
     {
         try
         {
-            
-            Product = await HttpClient.GetFromJsonAsync<Product>($"product/{ProductId}");
-
-            
-            if (Product == null)
-            {
-                
-                ErrorMessage = "Product not found.";
-            }
+            Product = await HttpClient.GetFromJsonAsync<Product>($"products/{Id}");
         }
         catch (Exception ex)
         {
             ErrorMessage = ex.Message;
         }
     }
-
-
-
-
 
 
 }

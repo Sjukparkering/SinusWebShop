@@ -25,13 +25,13 @@ namespace SinusWebShop.Api
 
                 Root? result = JsonConvert.DeserializeObject<Root>(json);
 
-                if(result != null)
+                if (result != null)
                 {
                     return result;
                 }
             }
             throw new HttpRequestException("Failed to fetch data!");
-        
+
         }
     }
 }

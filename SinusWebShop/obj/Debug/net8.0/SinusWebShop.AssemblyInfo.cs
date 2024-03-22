@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SinusWebShop")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ba75fd58b1d4d686c866cee8789006a9dad8fd71")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1904e9d98d9df77827cd0f2e6bf6acbc3d2f4de3")]
 [assembly: System.Reflection.AssemblyProductAttribute("SinusWebShop")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SinusWebShop")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
