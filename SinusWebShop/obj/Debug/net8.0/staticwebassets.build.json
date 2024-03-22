@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "UjLb6CBukwI0o4qOjRPZs7ZKzqifPQuEKXUMwP9UDCU=",
+  "Hash": "LtQ6kogOhX1bkAEIlr/D4vVwnj01/JZDTVGd+kAsiLk=",
   "Source": "SinusWebShop",
   "BasePath": "/",
   "Mode": "Root",
@@ -53,6 +53,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/danielsupina/.nuget/packages/microsoft.aspnetcore.components.webassembly/8.0.1/build/net8.0/blazor.webassembly.js"
+    },
+    {
+      "Identity": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/bin/Debug/net8.0/wwwroot/_framework/Blazored.LocalStorage.wasm",
+      "SourceId": "SinusWebShop",
+      "SourceType": "Computed",
+      "ContentRoot": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/bin/Debug/net8.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/Blazored.LocalStorage.wasm",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "WasmResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/obj/Debug/net8.0/webcil/Blazored.LocalStorage.wasm"
     },
     {
       "Identity": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/bin/Debug/net8.0/wwwroot/_framework/dotnet.js",
@@ -5848,6 +5867,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/bin/Debug/net8.0/wwwroot/_framework/System.ServiceModel.Web.wasm"
+    },
+    {
+      "Identity": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/obj/Debug/net8.0/compressed/h68mixys4c.gz",
+      "SourceId": "SinusWebShop",
+      "SourceType": "Computed",
+      "ContentRoot": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/bin/Debug/net8.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/Blazored.LocalStorage.wasm.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/bin/Debug/net8.0/wwwroot/_framework/Blazored.LocalStorage.wasm",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/bin/Debug/net8.0/wwwroot/_framework/Blazored.LocalStorage.wasm"
     },
     {
       "Identity": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/obj/Debug/net8.0/compressed/h8fdwqm2um.gz",

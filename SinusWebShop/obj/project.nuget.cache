@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "NYCW75wgIzDpay8WCPCYraDpFaOH0ky02niawXiyqSNMMNAEDoPB5Wfl84YFHve2ADKX6q38p4goW5VbVGwVug==",
+  "dgSpecHash": "W5ezvtSYU/64bdNw58rVw4wsfl23YmYPQXSgymWo+1WsThKoGQWhDR37+vUhYl1prsX6VWlVjVVxhNr0iGhyZw==",
   "success": true,
   "projectFilePath": "/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/SinusWebShop.csproj",
   "expectedPackageFiles": [
+    "/Users/danielsupina/.nuget/packages/blazored.localstorage/4.5.0/blazored.localstorage.4.5.0.nupkg.sha512",
     "/Users/danielsupina/.nuget/packages/microsoft.aspnetcore.authorization/8.0.1/microsoft.aspnetcore.authorization.8.0.1.nupkg.sha512",
     "/Users/danielsupina/.nuget/packages/microsoft.aspnetcore.components/8.0.1/microsoft.aspnetcore.components.8.0.1.nupkg.sha512",
     "/Users/danielsupina/.nuget/packages/microsoft.aspnetcore.components.analyzers/8.0.1/microsoft.aspnetcore.components.analyzers.8.0.1.nupkg.sha512",

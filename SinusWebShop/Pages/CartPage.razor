@@ -1,7 +1,6 @@
-﻿@using SinusWebShop.Models
+﻿@page "/CartPage"
+@using SinusWebShop.Models
 @using SinusWebShop.Managers
-@page "/CartPage"
-
 
 <h3>Cart</h3>
 
@@ -13,16 +12,62 @@
             <li>
                 <h3>@product.Title</h3>
                 <p><strong>Price:</strong><em> $ @product.Price</em></p>
+                <button @onclick="() => RemoveFromCart(product)">Remove</button>
             </li>
-
-        }>
+        }
     </ul>
 
     <h3>Total: @CartManager.GetTotalPrice()</h3>
+
+    <h3>Checkout</h3>
+    <form>
+        <fieldset>
+            <legend>Personal Information</legend>
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" pattern="[A-Za-z]+" title="Only letters are allowed" required><br>
+
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" pattern="[A-Za-z]+" title="Only letters are allowed" required><br>
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Payment Information</legend>
+            <label for="cardName">Cardholder Name:</label>
+            <input type="text" id="cardName" name="cardName" pattern="[A-Za-z]+" title="Only letters are allowed" required><br>
+
+            <label for="cardNumber">Card Number:</label>
+            <input type="text" id="cardNumber" name="cardNumber" pattern="[0-9]{16}" title="Only 16 digits are allowed" required><br>
+
+            <label for="cvc">CVC:</label>
+            <input type="text" id="cvc" name="cvc" pattern="[0-9]{3}" title="Only 3 digits are allowed" required><br>
+        </fieldset>
+
+        <button @onclick="ConfirmPurchase">Confirm Purchase</button>
+    </form>
 }
 else
 {
     <h1>Cart is empty...</h1>
 }
 
+@code {
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
+
+    private void RemoveFromCart(Product product)
+    {
+        CartManager.RemoveFromCart(product);
+    }
+
+    private async Task ConfirmPurchase()
+    {
+       
+
+        // Navigate to OrderConfirmationPage
+        NavigationManager.NavigateTo("/OrderConfirmationPage");
+    }
+}
 

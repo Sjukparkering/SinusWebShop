@@ -2,6 +2,7 @@
 @inject HttpClient httpClient
 @using SinusWebShop.Models
 @using System.Net.Http.Json
+@using SinusWebShop.Managers
 
 @if (Product != null)
 {
@@ -19,6 +20,16 @@
             <img src="@image" alt="Product Image" />
         }
     </div>
+
+    <button @onclick="AddToCart">Add to Cart</button>
+    <div class="toast-container">
+        <div class="toast @(toastVisible ? "show" : "")">
+            @if (toastVisible)
+            {
+                <p>Product added to cart!</p>
+            }
+        </div>
+    </div>
 }
 else
 {
@@ -31,6 +42,7 @@ else
 
     public Product? Product { get; set; }
     public string ErrorMessage { get; set; }
+    public bool toastVisible { get; set; }
 
     [Inject]
     public HttpClient HttpClient { get; set; }
@@ -47,5 +59,49 @@ else
         }
     }
 
+    private void AddToCart()
+    {
+        CartManager.AddToCart(Product);
+    }
+    private async Task AddToCart(MouseEventArgs e)
+    {
+        CartManager.AddToCart(Product);
+        toastVisible = true;
+        await Task.Delay(2000); // Display the toast for 2 seconds
+        toastVisible = false;
+    }
 
 }
+
+<style>
+    .toast-container {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+    }
+
+    .toast {
+        background-color: #4CAF50;
+        color: white;
+        text-align: center;
+        padding: 16px;
+        border-radius: 8px;
+    }
+
+    .show {
+        animation: fadeOut 2s forwards;
+    }
+
+    .keyframes fadeOut {
+        0% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+            display: none;
+        }
+    }
+</style>
+

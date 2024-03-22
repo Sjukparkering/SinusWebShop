@@ -1035,3 +1035,8 @@
 /Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/bin/Debug/net8.0/Newtonsoft.Json.dll
 /Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/obj/Debug/net8.0/webcil/Newtonsoft.Json.wasm
 /Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/obj/Debug/net8.0/compressed/0qjaawqkki.gz
+/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/bin/Debug/net8.0/wwwroot/_framework/Blazored.LocalStorage.wasm
+/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/bin/Debug/net8.0/wwwroot/_framework/Blazored.LocalStorage.wasm.gz
+/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/bin/Debug/net8.0/Blazored.LocalStorage.dll
+/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/obj/Debug/net8.0/webcil/Blazored.LocalStorage.wasm
+/Users/danielsupina/Desktop/SinusWebShop/SinusWebShop/obj/Debug/net8.0/compressed/h68mixys4c.gz
