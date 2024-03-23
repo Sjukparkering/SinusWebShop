@@ -1,8 +1,36 @@
-﻿@page "/CartPage"
+﻿
+@page "/CartPage"
 @using SinusWebShop.Models
 @using SinusWebShop.Managers
+@using System.Text.Json;
+@using Microsoft.JSInterop;
+@inject Microsoft.JSInterop.IJSRuntime JSRuntime
+@using System.Text.RegularExpressions
 
-<h3>Cart</h3>
+<style>
+    .empty-cart {
+        text-align: center;
+        margin-top: 50px;
+    }
+
+        .empty-cart h1 {
+            font-size: 24px;
+            color: #555;
+        }
+
+            .empty-cart h1::before {
+                content: " ";
+                display: block;
+                width: 50px;
+                height: 50px;
+                margin: 0 auto 20px;
+                background: url('sad-smiley.png') no-repeat;
+                background-size: cover;
+            }
+</style>
+
+
+<h3></h3>
 
 @if (CartManager.Cart.Any())
 {
@@ -12,50 +40,85 @@
             <li>
                 <h3>@product.Title</h3>
                 <p><strong>Price:</strong><em> $ @product.Price</em></p>
-                <button @onclick="() => RemoveFromCart(product)">Remove</button>
+                <button @onclick="() => RemoveFromCart(product)" class="btn btn-danger">Remove</button>
             </li>
         }
     </ul>
 
     <h3>Total: @CartManager.GetTotalPrice()</h3>
 
-    <h3>Checkout</h3>
-    <form>
-        <fieldset>
-            <legend>Personal Information</legend>
-            <label for="firstName">First Name:</label>
-            <input type="text" id="firstName" name="firstName" pattern="[A-Za-z]+" title="Only letters are allowed" required><br>
+    <div class="checkout-form">
+        <h3>Checkout</h3>
+        <form>
+            <fieldset>
+                <legend>Personal Information</legend>
+                <div class="form-group">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" id="firstName" @bind="User.FirstName" class="form-control" required pattern="[A-Za-zÄäÖöÅå\s]+" title="Only letters are allowed">
+                </div>
 
-            <label for="lastName">Last Name:</label>
-            <input type="text" id="lastName" name="lastName" pattern="[A-Za-z]+" title="Only letters are allowed" required><br>
+                <div class="form-group">
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" id="lastName" @bind="User.LastName" class="form-control" required pattern="[A-Za-zÄäÖöÅå\s]+" title="Only letters are allowed">
+                </div>
 
-            <label for="address">Address:</label>
-            <input type="text" id="address" name="address" required><br>
-        </fieldset>
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" @bind="User.Address" class="form-control" required>
+                </div>
+            </fieldset>
 
-        <fieldset>
-            <legend>Payment Information</legend>
-            <label for="cardName">Cardholder Name:</label>
-            <input type="text" id="cardName" name="cardName" pattern="[A-Za-z]+" title="Only letters are allowed" required><br>
+            <fieldset>
+                <legend>Payment Information</legend>
+                <div class="form-group">
+                    <label for="cardName">Cardholder Name:</label>
+                    <input type="text" id="cardName" @bind="User.CardHolderName" class="form-control" required pattern="[A-Za-zÄäÖöÅå\s]+" title="Only letters are allowed">
+                </div>
 
-            <label for="cardNumber">Card Number:</label>
-            <input type="text" id="cardNumber" name="cardNumber" pattern="[0-9]{16}" title="Only 16 digits are allowed" required><br>
+                <div class="form-group">
+                    <label for="cardNumber">Card Number:</label>
+                    <input type="text" id="cardNumber" @bind="User.CardNumber" class="form-control" required pattern="[0-9]{16}" title="Only 16 digits are allowed">
+                </div>
 
-            <label for="cvc">CVC:</label>
-            <input type="text" id="cvc" name="cvc" pattern="[0-9]{3}" title="Only 3 digits are allowed" required><br>
-        </fieldset>
+                <div class="form-group">
+                    <label for="cvc">CVC:</label>
+                    <input type="text" id="cvc" @bind="User.CVC" class="form-control" required pattern="[0-9]{3}" title="Only 3 digits are allowed">
+                </div>
+            </fieldset>
 
-        <button @onclick="ConfirmPurchase">Confirm Purchase</button>
-    </form>
+            <button @onclick="ConfirmPurchase" class="btn btn-primary">Confirm Purchase</button>
+        </form>
+    </div>
 }
 else
 {
-    <h1>Cart is empty...</h1>
+<div class="empty-cart">
+    <h1>Cart is empty... 😞</h1>
+</div>
 }
 
 @code {
     [Inject]
     private NavigationManager NavigationManager { get; set; }
+
+    private UserInformation User { get; set; } = new UserInformation();
+
+
+    private bool IsValid =>
+        !string.IsNullOrWhiteSpace(User.FirstName) &&
+        Regex.IsMatch(User.FirstName, @"^[A-Za-zÄäÖöÅå\s]+$") &&
+        !string.IsNullOrWhiteSpace(User.LastName) &&
+        Regex.IsMatch(User.LastName, @"^[A-Za-zÄäÖöÅå\s]+$") &&
+        !string.IsNullOrWhiteSpace(User.Address) &&
+        !string.IsNullOrWhiteSpace(User.CardHolderName) &&
+        Regex.IsMatch(User.CardHolderName, @"^[A-Za-zÄäÖöÅå\s]+$") &&
+        !string.IsNullOrWhiteSpace(User.CardNumber) &&
+        User.CardNumber.Length == 16 && // Ensure card number has 16 digits
+        Regex.IsMatch(User.CardNumber, @"^\d+$") && // Ensure card number contains only digits
+        !string.IsNullOrWhiteSpace(User.CVC) &&
+        User.CVC.Length == 3 && // Ensure CVC has 3 digits
+        Regex.IsMatch(User.CVC, @"^\d+$"); // Ensure CVC contains only digits
+
 
     private void RemoveFromCart(Product product)
     {
@@ -64,10 +127,32 @@ else
 
     private async Task ConfirmPurchase()
     {
-       
+        if (IsValid)
+        {
+            // Spara användaruppgifterna i sessionen eller lokal lagring
+            await SaveUserData();
 
-        // Navigate to OrderConfirmationPage
-        NavigationManager.NavigateTo("/OrderConfirmationPage");
+            // Navigera till OrderConfirmationPage
+            NavigationManager.NavigateTo("/OrderConfirmationPage");
+        }
+        else
+        {
+            // Visa meddelande om att alla fält måste fyllas i
+            // Detta kan göras med ett varningsmeddelande eller något annat lämpligt
+            Console.WriteLine("Please fill in all required fields.");
+        }
     }
+
+
+
+
+
+    private async Task SaveUserData()
+    {
+
+        var serializedUser = JsonSerializer.Serialize(User);
+        JSRuntime.InvokeVoidAsync("localStorage.setItem", "userInformation", serializedUser);
+    }
+
 }
 

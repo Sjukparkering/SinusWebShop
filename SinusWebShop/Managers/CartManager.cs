@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using SinusWebShop.Models;
+﻿using SinusWebShop.Models;
 
 namespace SinusWebShop.Managers
 {
@@ -23,13 +21,5 @@ namespace SinusWebShop.Managers
             Cart.Remove(product);
         }
     }
-    public class UserInformation
-    {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Address { get; set; }
-        public string CardHolderName { get; set; }
-        public string CardNumber { get; set; }
-        public string CVC { get; set; }
-    }
+
 }

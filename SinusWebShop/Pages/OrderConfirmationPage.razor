@@ -1,7 +1,99 @@
 ﻿@page "/OrderConfirmationPage"
-@using System.Web
 @using SinusWebShop.Models
-@using SinusWebShop.Managers
+@using System.Text.Json
+@inject IJSRuntime JSRuntime
 
-<h1>Tack för din beställning!</h1>
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f0f0f0;
+    }
 
+    .confirmation-container {
+        max-width: 600px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #2ecc71;
+        color: #000;
+    }
+
+    h3 {
+        color: #333;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    p {
+        color: #333; 
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    li {
+        margin-bottom: 5px;
+    }
+</style>
+
+
+<div class="confirmation-container">
+    <h3>Order Confirmation</h3>
+
+    @if (User != null)
+    {
+        <p>Thank you for your purchase, <strong>@User.FirstName @User.LastName</strong>!</p>
+        <p>Your order will be shipped to: <em>@User.Address</em></p>
+        <p>Payment details:</p>
+        <ul>
+            <li>Cardholder Name: <em>@User.CardHolderName</em></li>
+            <li>Card Number: <em>@User.CardNumber</em></li>
+            <li>CVC: <em>@User.CVC</em></li>
+        </ul>
+    }
+    else
+    {
+        <p>Error: User information not found.</p>
+    }
+</div>
+
+
+
+@code {
+    private UserInformation User { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Hämta användaruppgifterna från lokal lagring
+        await GetUserData();
+    }
+
+    private async Task GetUserData()
+    {
+        try
+        {
+            // Hämta sparade användaruppgifter från lokal lagring
+            var serializedUser = await JSRuntime.InvokeAsync<string>("localStorage.getItem", "userInformation");
+            if (!string.IsNullOrEmpty(serializedUser))
+            {
+                // Deserialisera användaruppgifterna från JSON
+                User = JsonSerializer.Deserialize<UserInformation>(serializedUser);
+            }
+        }
+        catch (Exception ex)
+        {
+            // Hantera eventuella fel vid hämtning av användaruppgifter
+            Console.WriteLine($"Error retrieving user information: {ex.Message}");
+        }
+    }
+
+
+}

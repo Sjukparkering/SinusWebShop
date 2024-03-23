@@ -4,38 +4,44 @@
 @using SinusWebShop.Models
 @using System.Net.Http.Json
 
-<h1>@CategoryName Products</h1>
+<h1>@(CategoryName != null ? CategoryName.Substring(0, 1).ToUpper() + CategoryName.Substring(1) : "") products</h1>
 
 
-<select @bind="SelectedBrand">
-    <option value="">All Brands</option>
-    @foreach (var brand in ProductBrands)
-    {
-        <option value="@brand">@brand</option>
-    }
-</select>
-
-<select @bind="SelectedPriceRange">
-    <option value="">All Prices</option>
-    @foreach (var priceRange in PriceRanges)
-    {
-        <option value="@priceRange">@priceRange</option>
-    }
-</select>
-
-<button @onclick="ApplyFilters">Apply Filters</button>
+<div class="filters">
+    <div class="filter">
+        <label for="brand-select">Brand:</label>
+        <select id="brand-select" @bind="SelectedBrand">
+            <option value="">All Brands</option>
+            @foreach (var brand in ProductBrands)
+            {
+                <option value="@brand">@brand</option>
+            }
+        </select>
+    </div>
+    <div class="filter">
+        <label for="price-select">Price Range:</label>
+        <select id="price-select" @bind="SelectedPriceRange">
+            <option value="">All Prices</option>
+            @foreach (var priceRange in PriceRanges)
+            {
+                <option value="@priceRange">@priceRange</option>
+            }
+        </select>
+    </div>
+    <button class="apply-button" @onclick="ApplyFilters">Apply Filters</button>
+</div>
 
 @if (Products != null && Products.Any())
 {
-    <div class="card-container">
+    <div class="product-grid">
         @foreach (var product in FilteredProducts)
         {
-            <div class="card">
-                <img style="height:350px" src="@product.Thumbnail" alt="@product.Title" />
-                <div class="card-body">
+            <div class="product-card">
+                <img src="@product.Thumbnail" alt="@product.Title" />
+                <div class="product-details">
                     <h3>@product.Title</h3>
                     <p>Price: @product.Price</p>
-                    <button @onclick="() => NavigateToProductDetails(product.Id)">View Details</button>
+                    <button class="details-button" @onclick="() => NavigateToProductDetails(product.Id)">View Details</button>
                 </div>
             </div>
         }
@@ -56,7 +62,6 @@ else
     public string? SelectedPriceRange { get; set; }
     public List<string> ProductBrands { get; set; } = new();
     public List<string> PriceRanges { get; set; } = new();
-   
 
     [Inject]
     public HttpClient HttpClient { get; set; }
@@ -65,18 +70,15 @@ else
     {
         try
         {
-
             Root result = await HttpClient.GetFromJsonAsync<Root>("products");
             if (result != null)
             {
                 Products = result.Products.Where(p => p.Category == CategoryName).ToList();
-
                 ProductBrands = Products.Select(p => p.Brand).Distinct().ToList();
                 PriceRanges = Products.Select(p => p.Price).Distinct().Select(price => $"{price}-{price + 50}").ToList(); // Example price range of $50
 
                 FilterProducts();
             }
-
         }
         catch (Exception ex)
         {
@@ -112,3 +114,80 @@ else
         NavigationManager.NavigateTo($"/product/{productId}");
     }
 }
+
+<style>
+    .filters {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .filter {
+        margin-right: 20px;
+    }
+
+    .apply-button {
+        background-color: #007bff;
+        color: #ffffff;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .apply-button:hover {
+            background-color: #0056b3;
+        }
+
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-gap: 20px;
+        justify-items: center;
+    }
+
+    .product-card {
+        background-color: lightgrey;
+        color: black;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+    .product-details {
+        padding: 20px;
+    }
+
+        .product-details h3 {
+            margin-bottom: 10px;
+        }
+
+    .details-button {
+        background-color: #007bff;
+        color: #ffffff;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .details-button:hover {
+            background-color: #0056b3;
+        }
+</style>

@@ -4,37 +4,47 @@
 @using System.Net.Http.Json
 @using SinusWebShop.Managers
 
-@if (Product != null)
-{
-    <div class="product-details">
-        <h1>@Product.Title</h1>
-        <img src="@Product.Thumbnail" alt="@Product.Title" />
-        <p>Description: @Product.Description</p>
-        <p>Price: @Product.Price</p>
-        <p>Stock: @Product.Stock</p>
-        <p>Brand: @Product.Brand</p>
-        <p>Category: @Product.Category</p>
-        <h2>Images:</h2>
-        @foreach (var image in Product.Images)
-        {
-            <img src="@image" alt="Product Image" />
-        }
-    </div>
-
-    <button @onclick="AddToCart">Add to Cart</button>
-    <div class="toast-container">
-        <div class="toast @(toastVisible ? "show" : "")">
-            @if (toastVisible)
-            {
-                <p>Product added to cart!</p>
-            }
+<div class="container">
+    @if (Product != null)
+    {
+        <div class="product-details">
+            <h1>@Product.Title</h1>
+            <div class="image-container">
+                <img src="@selectedImage" alt="@Product.Title" class="product-image" />
+                @if (Product.Images.Count > 1)
+                {
+                    <div class="image-nav">
+                        <button @onclick="PreviousImage" class="btn btn-secondary" disabled="@IsFirstImage">&#10094;</button>
+                        <span class="image-counter">@currentIndex of @Product.Images.Count</span>
+                        <button @onclick="NextImage" class="btn btn-secondary" disabled="@IsLastImage">&#10095;</button>
+                    </div>
+                }
+            </div>
+            <p>Description: @Product.Description</p>
+            <p>Price: @Product.Price</p>
+            <p>Stock: @Product.Stock</p>
+            <p>Brand: @Product.Brand</p>
+            <p>Category: @Product.Category</p>
         </div>
-    </div>
-}
-else
-{
-    <p>Product not found.</p>
-}
+
+        <div class="add-to-cart">
+            <button @onclick="AddToCart" class="btn btn-success">Add to Cart</button>
+        </div>
+
+        <div class="toast-container">
+            <div class="toast @(toastVisible ? "show" : "")">
+                @if (toastVisible)
+                {
+                    <p>Product added to cart!</p>
+                }
+            </div>
+        </div>
+    }
+    else
+    {
+        <p>Product not found.</p>
+    }
+</div>
 
 @code {
     [Parameter]
@@ -43,6 +53,7 @@ else
     public Product? Product { get; set; }
     public string ErrorMessage { get; set; }
     public bool toastVisible { get; set; }
+    public int currentIndex { get; set; } = 0;
 
     [Inject]
     public HttpClient HttpClient { get; set; }
@@ -59,21 +70,106 @@ else
         }
     }
 
+    private bool IsFirstImage => currentIndex == 0;
+    private bool IsLastImage => currentIndex == Product.Images.Count - 1;
+
+    private string selectedImage => Product.Images[currentIndex];
+
+    private void PreviousImage()
+    {
+        if (!IsFirstImage)
+        {
+            currentIndex--;
+        }
+    }
+
+    private void NextImage()
+    {
+        if (!IsLastImage)
+        {
+            currentIndex++;
+        }
+    }
+
     private void AddToCart()
     {
         CartManager.AddToCart(Product);
-    }
-    private async Task AddToCart(MouseEventArgs e)
-    {
-        CartManager.AddToCart(Product);
         toastVisible = true;
-        await Task.Delay(2000); // Display the toast for 2 seconds
-        toastVisible = false;
+        Task.Delay(2000).ContinueWith(_ => toastVisible = false); // Display the toast for 2 seconds
     }
-
 }
 
 <style>
+    .container {
+        margin: 0 auto;
+        max-width: 800px; /* Adjusted width */
+    }
+
+    .product-details {
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+    }
+
+    .image-container {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .product-image {
+        max-width: 100%;
+        height: 300px; /* Fixed height */
+        object-fit: cover; /* Maintain aspect ratio */
+    }
+
+    .image-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .btn {
+        transition: all 0.3s ease;
+    }
+
+    .btn-secondary {
+        background-color: transparent;
+        border: none;
+        color: #333;
+        cursor: pointer;
+    }
+
+        .btn-secondary:hover {
+            color: #007bff;
+        }
+
+    .btn-success {
+        background-color: #28a745; /* Green color */
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        .btn-success:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+
+    .image-counter {
+        color: #333;
+    }
+
+    .add-to-cart {
+        margin-top: 20px;
+        text-align: center;
+    }
+
     .toast-container {
         position: fixed;
         top: 50%;
@@ -93,15 +189,4 @@ else
     .show {
         animation: fadeOut 2s forwards;
     }
-
-    .keyframes fadeOut {
-        0% {
-            opacity: 1;
-        }
-        100% {
-            opacity: 0;
-            display: none;
-        }
-    }
 </style>
-

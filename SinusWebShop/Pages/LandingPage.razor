@@ -4,9 +4,9 @@
 @using SinusWebShop.Models
 @using SinusWebShop.Api
 
-<h1>Välkommen till vår Webshop!</h1>
+<h1>Welcome to our Webshop!</h1>
 
-<p>Utforska våra senaste produkter och erbjudanden nedan.</p>
+<p>Explore our latest products and offers below</p>
 
 @if (Categories != null && Categories.Any())
 {
@@ -45,26 +45,44 @@
 }
 
 <style>
+    body {
+        background-color: #f0f0f0; /* Light background color */
+        color: #333333; /* Dark text color */
+        font-family: Arial, sans-serif; /* Font family */
+    }
+
+    h1, h2, p {
+        text-align: center; /* Center align headings and paragraphs */
+    }
+
     .main-categories {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
+        flex-direction: column; /* Display categories in a vertical column */
+        align-items: center; /* Center align categories horizontally */
         margin-top: 20px;
     }
 
+
     .category {
-        background-color: #f9f9f9;
-        border: 1px solid #ddd;
+        background-color: #ffffff; /* White background color */
+        border: 1px solid #000000; /* Black border */
         border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         padding: 20px;
         margin: 10px;
         text-align: center;
-        width: 200px;
+        width: 350px; /* Increased category width */
     }
 
+        .category h2 {
+            margin-bottom: 10px; /* Add space below category title */
+            text-transform: capitalize; /* Capitalize only the first letter */
+        }
+
+
     .explore-button {
-        background-color: #007bff;
-        color: white;
+        background-color: #007bff; /* Blue button color */
+        color: #ffffff; /* White text color */
         border: none;
         border-radius: 4px;
         padding: 10px 20px;
@@ -74,7 +92,6 @@
     }
 
         .explore-button:hover {
-            background-color: #0056b3;
+            background-color: #0056b3; /* Darker blue on hover */
         }
-
 </style>
