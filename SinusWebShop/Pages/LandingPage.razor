@@ -46,44 +46,47 @@
 
 <style>
     body {
-        background-color: #f0f0f0; /* Light background color */
-        color: #333333; /* Dark text color */
-        font-family: Arial, sans-serif; /* Font family */
+        background-color: grey; 
+        color: black; 
+        
+
     }
 
     h1, h2, p {
-        text-align: center; /* Center align headings and paragraphs */
+        text-align: center;
+        font-family: Verdana, Geneva, Tahoma, sans-serif
+        
     }
 
     .main-categories {
         display: flex;
-        flex-direction: column; /* Display categories in a vertical column */
-        align-items: center; /* Center align categories horizontally */
+        flex-direction: column; 
+        align-items: center; 
         margin-top: 20px;
     }
 
 
     .category {
-        background-color: #ffffff; /* White background color */
-        border: 1px solid #000000; /* Black border */
+        background-color: darkgray; 
+        border: 1px solid #000000; 
         border-radius: 8px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         padding: 20px;
         margin: 10px;
         text-align: center;
-        width: 350px; /* Increased category width */
+        width: 500px; 
     }
 
         .category h2 {
-            margin-bottom: 10px; /* Add space below category title */
-            text-transform: capitalize; /* Capitalize only the first letter */
+            margin-bottom: 10px; 
+            text-transform: capitalize; 
         }
 
 
     .explore-button {
-        background-color: #007bff; /* Blue button color */
-        color: #ffffff; /* White text color */
-        border: none;
+        background-color: transparent; 
+        border: 1px solid black;
+        color: black; 
         border-radius: 4px;
         padding: 10px 20px;
         margin-top: 10px;
@@ -92,6 +95,16 @@
     }
 
         .explore-button:hover {
-            background-color: #0056b3; /* Darker blue on hover */
+            background-color: darkblue;
+            color: #ffffff; 
         }
+
+
+    
+    .category:hover {
+        background-color: lightgray; 
+        transform: translateY(-5px); 
+        transition: background-color 0.3s ease, transform 0.3s ease; 
+    }
+
 </style>

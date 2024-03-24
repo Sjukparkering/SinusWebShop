@@ -75,7 +75,7 @@ else
             {
                 Products = result.Products.Where(p => p.Category == CategoryName).ToList();
                 ProductBrands = Products.Select(p => p.Brand).Distinct().ToList();
-                PriceRanges = Products.Select(p => p.Price).Distinct().Select(price => $"{price}-{price + 50}").ToList(); // Example price range of $50
+                PriceRanges = Products.Select(p => p.Price).Distinct().Select(price => $"{price}-{price + 50}").ToList(); 
 
                 FilterProducts();
             }
@@ -90,13 +90,13 @@ else
     {
         FilteredProducts = Products;
 
-        // Filter by brand
+        
         if (!string.IsNullOrEmpty(SelectedBrand))
         {
             FilteredProducts = FilteredProducts.Where(p => p.Brand == SelectedBrand).ToList();
         }
 
-        // Filter by price
+        
         if (!string.IsNullOrEmpty(SelectedPriceRange))
         {
             var priceRange = SelectedPriceRange.Split('-').Select(int.Parse).ToList();
@@ -116,6 +116,17 @@ else
 }
 
 <style>
+
+    body {
+        background-color: grey;
+        color: black;
+    }
+
+    h1 {
+        text-align: center;
+        font-family: Verdana, Geneva, Tahoma, sans-serif
+    }
+
     .filters {
         display: flex;
         justify-content: center;
@@ -126,18 +137,26 @@ else
         margin-right: 20px;
     }
 
+
+    .filter select, .apply-button {
+            padding: 10px 20px;
+            font-size: 16px;
+    }
+
     .apply-button {
-        background-color: #007bff;
-        color: #ffffff;
-        border: none;
+        background-color: white;
+        border: 1px solid black;
+        color: darkblue;
         border-radius: 4px;
-        padding: 8px 16px;
+        padding: 10px 20px;
+        margin-top: 10px;
         cursor: pointer;
         transition: background-color 0.3s ease;
     }
 
         .apply-button:hover {
             background-color: #0056b3;
+            color: darkblue;
         }
 
     .product-grid {

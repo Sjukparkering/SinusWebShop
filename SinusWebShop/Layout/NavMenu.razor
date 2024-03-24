@@ -1,16 +1,13 @@
 ﻿<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
     <nav class="flex-column">
         <div class="nav-item px-3">
-
-
-            <NavLink class="nav-link" href="/" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Startsida
+            <NavLink class="nav-link home-link" href="/" Match="NavLinkMatch.All">
+                Home
             </NavLink>
         </div>
-
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="CartPage">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Min varukorg
+            <NavLink class="nav-link mycart-link" href="CartPage">
+                MyCart
             </NavLink>
         </div>
     </nav>
@@ -26,3 +23,11 @@
         collapseNavMenu = !collapseNavMenu;
     }
 }
+
+
+<style>
+    .home-link, .mycart-link {
+        font-size: 30px; 
+    }
+
+</style>
